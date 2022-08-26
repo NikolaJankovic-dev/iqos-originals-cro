@@ -1,17 +1,23 @@
+@font-face {
+  font-family: "Iqos-Light";
+  src: url("../assets/fonts/IQOS-Light.ttf");
+}
 * {
   box-sizing: border-box;
 }
 .modal {
   position: absolute;
   z-index: 3;
-  background-color: rgba(59, 59, 58, 0.67);
+  background-color: rgba(126, 126, 126, 0.67);
 
   width: 100%;
   height: 100%;
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(6px);
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: inset -2px 2px 6px hsla(0, 0%, 0%, 0.363),
+            inset 2px -2px 6px hsla(0, 16%, 9%, 0.466);
 }
 .enter {
   opacity: 0;
@@ -35,11 +41,12 @@
   transition: opacity 300ms, transform 300ms;
 }
 .modalContent {
-  width: max(40%, 300px);
+  width: max(46%, 300px);
 
   background-color: rgb(53, 47, 61);
   border-radius: 20px;
   text-align: center;
+  padding: 10px;
 }
 .modalContent2 {
   // min-width: 300px;
@@ -52,6 +59,11 @@
 .modalHeader {
   color: rgb(0, 210, 211);
   text-align: center;
+  h1 {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
 }
 .modalHeader2 {
   color: rgb(255, 255, 255);
@@ -59,8 +71,10 @@
   filter: drop-shadow(0 0 0.1rem rgba(37, 55, 218, 0.377));
 }
 .modalBody {
-  color: rgb(255, 255, 255);
+  color: rgb(255, 253, 251);
   text-align: center;
+  font-family: "Iqos-Light";
+  font-weight: 100;
   span {
     font-weight: 600;
   }
@@ -84,11 +98,14 @@
   outline: none;
   color: rgb(255, 255, 255);
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   text-align: center;
   padding-inline: 1rem;
   cursor: pointer;
-  margin: 22px;
+  margin: 35px;
+   margin-top: 10px;
+  padding-inline: 50px;
+  padding-block: 5px;
 }
 .modalBtn2 {
   // width: 100%;

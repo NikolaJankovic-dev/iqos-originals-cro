@@ -1,15 +1,22 @@
+@font-face {
+  font-family: "Iqos-Regular";
+  src: url("../assets/fonts/IQOS-Regular.ttf");
+}
+* {
+  font-family: "Iqos-Regular";
+}
+
 .main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
   position: relative;
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
   margin: 0 auto;
   overflow: hidden;
-  padding-inline: 20px;
+  padding-inline: 5px;
   box-shadow: 0 4px 12px 0 rgba(65, 65, 65, 0.226);
   background-color: rgb(53, 47, 61);
 }
@@ -37,22 +44,26 @@
   top: -200%;
 }
 
-.background {
-  padding-top: 5vh;
-  height: 44vh;
-  aspect-ratio: 18/9;
+.background, .background2 {
+  height: 48vh;
+  margin-top: 0.9vh;
+  aspect-ratio: 2199/1226;
   background-image: url("../assets/background.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
+.background2 {
+  margin-bottom: 0.9vh;
+}
+
 .iqosOld,
 .iqosOldFade {
   position: absolute;
-  bottom: 56%;
-  left: 17%;
-  width: 24%;
+  bottom: 53%;
+  left: 14%;
+  height: 41%;
   transition: all 0.5s;
 }
 
@@ -64,9 +75,9 @@
 .iqosMediumUp,
 .iqosMediumFade {
   position: absolute;
-  bottom: calc(5% + 5px);
-  left: calc(16% - 2px);
-  width: calc(28% - 0px);
+  bottom: 2%;
+  left: calc(14% + 1px);
+  height: calc(42% - 2px);
   transition: all 1s;
 }
 
@@ -83,9 +94,9 @@
 .iqosNew,
 .iqosNewUp {
   position: absolute;
-  bottom: 6%;
-  left: 18%;
-  width: 21%;
+  bottom: calc(3% - 2px);
+  left: calc(17% - 2px);
+  height: 41%;
   transition: all 0.5s;
 }
 
@@ -95,36 +106,20 @@
 }
 
 @-webkit-keyframes iqosUp {
-  0% {
-    z-index: 3;
-  }
-  75% {
-    bottom: 60%;
-    z-index: 3;
-  }
   100% {
-    bottom: 56%;
-    z-index: 1;
+    bottom: 53%;
   }
 }
 
 @keyframes iqosUp {
-  0% {
-    z-index: 3;
-  }
-  75% {
-    bottom: 60%;
-    z-index: 3;
-  }
   100% {
-    bottom: 56%;
-    z-index: 1;
+    bottom: 53%;
   }
 }
 .button, .buttonUp, .buttonZoom {
   position: absolute;
-  width: calc(3% + 0px);
-  left: calc(21% - 1px);
+  width: calc(90% - 3px);
+  left: calc(20% - 0px);
   transition: top 1s ease-out 1s;
   z-index: 1;
 }
@@ -170,9 +165,9 @@
 .kitOld,
 .kitOldFade {
   position: absolute;
-  bottom: 57%;
-  left: 32%;
-  width: 18%;
+  bottom: 54%;
+  left: 30%;
+  width: 27%;
   transition: all 1s;
   z-index: 2;
   opacity: 1;
@@ -185,9 +180,9 @@
 .kitNew,
 .kitNewUp {
   position: absolute;
-  bottom: 8%;
-  left: 28%;
-  width: 20%;
+  bottom: 3%;
+  left: 27%;
+  width: 25%;
   transition: all 1s;
   z-index: 2;
 }
@@ -206,7 +201,7 @@
     transform: scale(1.1);
   }
   100% {
-    bottom: 57%;
+    bottom: 54%;
   }
 }
 
@@ -219,15 +214,15 @@
     transform: scale(1.1);
   }
   100% {
-    bottom: 57%;
+    bottom: 54%;
   }
 }
 .nameOld,
 .nameOldFade {
   position: absolute;
-  top: 26%;
-  left: 53%;
-  width: 30%;
+  top: 24%;
+  left: 56%;
+  width: 38%;
   transition: all 1s 1s;
   transform-origin: center;
 }
@@ -240,8 +235,8 @@
 .nameNewUp {
   position: absolute;
   top: 72%;
-  left: 52%;
-  width: 30%;
+  left: 56%;
+  width: 38%;
   transition: all 1s;
 }
 
@@ -259,7 +254,7 @@
     transform: scale(1.1);
   }
   100% {
-    top: 23%;
+    top: 21%;
     z-index: 1;
   }
 }
@@ -273,7 +268,7 @@
     transform: scale(1.1);
   }
   100% {
-    top: 23%;
+    top: 21%;
     z-index: 1;
   }
 }
@@ -282,18 +277,25 @@
   right: 0;
   top: 50%;
   transform: translate(50%, -50%);
-  width: 40%;
-  height: 40%;
+  width: 32%;
+  aspect-ratio: 1;
   background-color: rgb(53, 47, 61);
   border-radius: 50%;
-  display: flex;
-  align-items: center;
+}
+.eclipse div {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 .eclipse p {
-  font-size: 12.5vh;
+  position: absolute;
+  left: 30%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 8vw;
   color: #fff;
   font-weight: bold;
-  margin-left: 4rem;
+  margin-block: 0;
   vertical-align: middle;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -304,11 +306,12 @@
 .btn1 {
   position: absolute;
   bottom: 37%;
-  left: calc(11% - 3px);
-  width: 25%;
+  left: calc(19% + 1px);
+  width: 5%;
   height: 20%;
   background-color: rgba(255, 255, 255, 0);
-  z-index: 10;
+  z-index: 1;
+  transition: all 2s ease-out 1s;
 }
 
 .btn2 {
@@ -327,7 +330,7 @@
   left: calc(10% - 5px);
   width: 80%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0);
+  background-color: rgba(78, 16, 16, 0);
   z-index: 10;
 }
 
@@ -343,40 +346,40 @@
 
 .btn5 {
   position: absolute;
-  bottom: 57%;
-  left: calc(39% + 0px);
-  width: 5%;
-  height: 16%;
+  bottom: 56%;
+  left: calc(41% + 0px);
+  width: 6%;
+  height: 20%;
   background-color: rgba(49, 6, 6, 0);
   z-index: 10;
 }
 
 .btn6 {
   position: absolute;
-  bottom: 57%;
-  left: calc(35% - 3px);
-  width: 13%;
-  height: 7%;
+  bottom: 55%;
+  left: calc(34% - 3px);
+  width: 20%;
+  height: 8%;
   background-color: rgba(52, 38, 134, 0);
   z-index: 10;
 }
 
 .btn7 {
   position: absolute;
-  bottom: 7%;
-  left: calc(41% - 2px);
+  bottom: 3%;
+  left: calc(44% - 2px);
   width: 7%;
-  height: 31%;
+  height: 35%;
   background-color: rgba(49, 6, 6, 0);
   z-index: 10;
 }
 
 .btn8 {
   position: absolute;
-  bottom: 9%;
+  bottom: 4%;
   left: calc(28% - 3px);
   width: 18%;
-  height: 6%;
+  height: 7%;
   background-color: rgba(49, 6, 6, 0);
   z-index: 10;
 }
@@ -400,11 +403,8 @@
   .main {
     padding: 0;
   }
-  .background {
+  .background, .background2 {
     width: 100vw;
-  }
-  .eclipse {
-    width: 30vh;
-    height: 30vh;
+    height: auto;
   }
 }/*# sourceMappingURL=Main.module.css.map */

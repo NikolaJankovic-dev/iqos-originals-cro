@@ -3,7 +3,9 @@ import Main from "./components/Main";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" style={{
+      minHeight: window.innerHeight
+    }}>
       <Main />
     </div>
   );

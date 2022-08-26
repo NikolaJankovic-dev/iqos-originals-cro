@@ -80,9 +80,12 @@ const Main = () => {
         setModalHeader(<h1>Čestitamo!</h1>);
       setModalText(
         <p>
-          Uspešno ste našli vse 4 razlike.
+          Uspješno ste pronašli sve <br/> 4 razlike.
           <br />
-          Osvojili ste <span>200</span> točk
+          <br/>
+          Osvojili ste <span style={{
+            fontWeight: "bolder"
+          }}>200</span> bodova
         </p>
       );
       setModalBtn("Preuzmi bodove");
@@ -108,7 +111,10 @@ const Main = () => {
     setModalText(
       <p>
         Dostupan je u 4 nove boje: <br />
-        <span>turquoise, silver, scarlet i slate</span>.
+        <span style={{
+            display: "block",
+            marginBottom: "60px"
+          }}>turquoise, silver, scarlet i slate.</span>
       </p>
     );
     setModalBtn("Nastavi");
@@ -118,7 +124,7 @@ const Main = () => {
   }
   };
   const handleIqosMedium = () => {
-    if (!openModal){
+    if (!openModal && iqosStyle===1){
     // setIqosMedium(style.iqosMediumFade);
     setButtonStyle(style.buttonZoom)
     setIqosNew(style.iqosNewUp);
@@ -127,7 +133,10 @@ const Main = () => {
     setModalText(
       <div>
         <img src={require("../assets/exp.png")} alt="exp" draggable={false}/>
-      <p>
+      <p style={{
+            display: "block",
+            marginBottom: "60px"
+          }}>
         Vidljiva tirkizna tipka 
         <br />
         Upotpunjuje dizajn!  
@@ -217,7 +226,11 @@ const Main = () => {
         <p>
           Stigao je
           <br />
-          <span>IQOS ORIGINALS DUO</span>
+          <span style={{
+            display: "block",
+            marginBottom: "40px"
+          }}>IQOS ORIGINALS DUO</span>
+          
         </p>
       );
       setModalBtn("Nastavi");
@@ -256,7 +269,7 @@ const Main = () => {
     img10Loaded, 
   ]);
   useEffect(()=>{
-    const positionDown = document.getElementById("iqosMedium")?.offsetHeight/2.02 + document.getElementById("iqosMedium")?.offsetTop
+    const positionDown = document.getElementById("iqosMedium")?.offsetHeight/2.03 + document.getElementById("iqosMedium")?.offsetTop
     if (loaded){
     setButtonPosition(positionDown) 
     console.log(positionDown)  } 
@@ -271,9 +284,9 @@ const Main = () => {
   return ( 
     <div
       className={style.main}
-      style={{
-        minHeight: window.innerHeight,
-      }}
+      // style={{
+      //   minHeight: window.innerHeight,
+      // }}
     >
       <div
         style={{
@@ -344,7 +357,7 @@ const Main = () => {
               width: document?.getElementById("iqosOld")?.offsetWidth,
               height: document?.getElementById("iqosOld")?.offsetHeight,
               position: "absolute",
-              bottom: "58%",
+              bottom: "54%",
               left: "16%",
             }}
           >
@@ -422,7 +435,7 @@ const Main = () => {
           />
         </div>
       </div>
-      <div className={style.background}>
+      <div className={style.background2}>
         <div className={style.content}>
           {/* <img
             onLoad={() => setImg4Loaded(true)}
@@ -456,25 +469,38 @@ const Main = () => {
             className={iqosMedium}
             id="iqosMedium"
           />
-           <img
+          <div
+                className={style.btn1}
+                onPointerDown={handleIqosMedium}
+                style={{
+                  // display: iqosStyle === 1 ? "block" : "none",
+                  
+                       top: buttonPosition
+                      
+                }}
+              >
+                 <img
            onLoad={()=>setImg4Loaded(true)}
            draggable={false}
            src={require("../assets/button.png")}
            alt="button"
            className={buttonStyle}
-           style={{
-            top: buttonPosition
-           }} 
+          //  style={{
+          //   top: buttonPosition
+          //  }} 
            />
+              </div>
+          
           <div
             style={{
               width: document?.getElementById("iqosOld")?.offsetWidth,
               height: document?.getElementById("iqosOld")?.offsetHeight,
               position: "absolute",
-              bottom: "6%",
+              bottom: "4%",
               left: "16%",
             }}
           >
+            
             <div
               style={{
                 position: "relative",
@@ -483,13 +509,7 @@ const Main = () => {
               }}
             >
              
-              <div
-                className={style.btn1}
-                onPointerDown={handleIqosMedium}
-                style={{
-                  display: iqosStyle === 1 ? "block" : "none",
-                }}
-              ></div>
+              
               <div
                 className={style.btn3}
                 onPointerDown={handleIqosOld}
@@ -583,7 +603,8 @@ const Main = () => {
         </div>
       </div>
       <div className={style.eclipse}>
-        <p>{number === 5 ? 4 : number}</p>
+        <div>
+        <p>{number === 5 ? 4 : number}</p></div>
       </div>
     </div>
   );
