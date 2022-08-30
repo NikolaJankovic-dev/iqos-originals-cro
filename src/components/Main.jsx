@@ -2,6 +2,7 @@ import React, { useEffect, useLayoutEffect, useState } from "react";
 import style from "./Main.module.css";
 import Modal from "./Modal";
 import Confetti from "./Confetti";
+import Hints from "./Hints";
 
 const Main = () => {
   const [img1Loaded, setImg1Loaded] = useState(false);
@@ -21,10 +22,10 @@ const Main = () => {
   const [iqosTransition, setIqosTransition] = useState(false);
   // const [kitNew, setKitNew] = useState(false);
   const [kitTransition, setKitTransition] = useState(false);
-  const [kitFounded, setKitFounded] = useState(false);
+  // const [kitFounded, setKitFounded] = useState(false);
   const [nameStyle, setNameStyle] = useState(false);
   const [nameTransition, setNameTransition] = useState(false);
-  const [nameFounded, setNameFounded] = useState(false);
+  // const [nameFounded, setNameFounded] = useState(false);
   const [iqosOld, setIqosOld] = useState(style.iqosOld);
   const [iqosMedium, setIqosMedium] = useState(style.iqosMedium);
   const [iqosNew, setIqosNew] = useState(style.iqosNew);
@@ -33,9 +34,20 @@ const Main = () => {
   const [nameOld, setNameOld] = useState(style.nameOld);
   const [nameNew, setNameNew] = useState(style.nameNew);
 
-  const [buttonStyle, setButtonStyle] = useState(style.button)
+  const [hint, setHint] = useState("none");
+  const [deviceFounded, setDeviceFounded] = useState(false);
+  const [buttonFounded, setButtonFounded] = useState(false);
+  const [kitFounded, setKitFounded] = useState(false);
+  const [nameFounded, setNameFounded] = useState(false);
 
-  const [buttonPosition, setButtonPosition] = useState(document.getElementById("iqosNew")?.offsetHeight/2 + document.getElementById("iqosNew")?.offsetTop) 
+  const [buttonStyle, setButtonStyle] = useState(style.button);
+
+  const [buttonPosition, setButtonPosition] = useState(
+    document.getElementById("iqosNew")?.clientTop -
+      document.getElementById("iqosNew")?.clientHeight
+    // +
+    // document.getElementById("iqosNew")?.offsetTop
+  );
 
   const [openModal, setOpenModal] = useState(true);
 
@@ -58,13 +70,28 @@ const Main = () => {
 
   const [confettiQuantity, setConfettiQuantity] = useState(0);
 
-  
-  
-  const handleClose = () => { 
-    if (number > 1) { 
+  const handleHint = () => {
+    console.log("click")
+    if (!kitFounded) {
+      setHint("kit");
+    } else if (!nameFounded) {
+      setHint("name");
+    } else if (!deviceFounded) {
+      setHint("device");
+    } else if (!buttonFounded) {
+      setHint("button");
+    }
+    const timer = setTimeout(() => {
+      setHint("none");
+    }, 5000);
+    //  return clearTimeout(timer)
+  };
+
+  const handleClose = () => {
+    if (number > 1) {
       setOpenModal(false);
       setNumber(number - 1);
-      // setKitTransition(false); 
+      // setKitTransition(false);
       const timer = setTimeout(() => {
         setKitTransition(false);
         setIqosTransition(false);
@@ -75,20 +102,26 @@ const Main = () => {
       setNumber(0);
       setOpenModal(false);
       setConfettiQuantity(1);
-      
+
       const timer = setTimeout(() => {
         setModalHeader(<h1>Čestitamo!</h1>);
-      setModalText(
-        <p>
-          Uspješno ste pronašli sve <br/> 4 razlike.
-          <br />
-          <br/>
-          Osvojili ste <span style={{
-            fontWeight: "bolder"
-          }}>200</span> bodova
-        </p>
-      );
-      setModalBtn("Preuzmi bodove");
+        setModalText(
+          <p>
+            Uspješno ste pronašli sve <br /> 4 razlike.
+            <br />
+            <br />
+            Osvojili ste{" "}
+            <span
+              style={{
+                fontWeight: "bolder",
+              }}
+            >
+              200
+            </span>{" "}
+            bodova
+          </p>
+        );
+        setModalBtn("Preuzmi bodove");
         setKitTransition(false);
         setIqosTransition(false);
         setNameTransition(false);
@@ -101,144 +134,160 @@ const Main = () => {
   const handleOpen = () => {
     setOpenModal(true);
   };
- 
+
   const handleIqosOld = () => {
-    if (!openModal){
-    setIqosOld(style.iqosOldFade);
-    setIqosMedium(style.iqosMediumUp);
-    setIqosStyle(1); 
-    setModalHeader(<h1>Nove boje</h1>);
-    setModalText(
-      <p>
-        Dostupan je u 4 nove boje: <br />
-        <span style={{
-            display: "block",
-            marginBottom: "60px"
-          }}>turquoise, silver, scarlet i slate.</span>
-      </p>
-    );
-    setModalBtn("Nastavi");
-    const timer = setTimeout(() => {
-      setOpenModal(true);
-    }, 2000);
-  }
-  };
-  const handleIqosMedium = () => {
-    if (!openModal && iqosStyle===1){
-    // setIqosMedium(style.iqosMediumFade);
-    setButtonStyle(style.buttonZoom)
-    setIqosNew(style.iqosNewUp);
-    setIqosStyle(2); 
-    setModalHeader(<h1>Nova tipka</h1>);
-    setModalText(
-      <div>
-        <img src={require("../assets/exp.png")} alt="exp" draggable={false}/>
-      <p style={{
-            display: "block",
-            marginBottom: "60px"
-          }}>
-        Vidljiva tirkizna tipka 
-        <br />
-        Upotpunjuje dizajn!  
-      </p></div>
-    );
-    setModalBtn("Nastavi");
-    const timer = setTimeout(() => {
-      setOpenModal(true);
-    }, 2000);
-  }
-  };
-  const handleIqos = () => {
-    if (!openModal){
-    if (iqosStyle === 0) {
+    if (!openModal) {
+      setIqosOld(style.iqosOldFade);
+      setIqosMedium(style.iqosMediumUp);
       setIqosStyle(1);
-      setIqosTransition(true);
+      setDeviceFounded(true);
       setModalHeader(<h1>Nove boje</h1>);
       setModalText(
         <p>
           Dostupan je u 4 nove boje: <br />
-          <span>turquoise, silver, scarlet i slate</span>.
+          <span
+            style={{
+              display: "block",
+              marginBottom: "60px",
+            }}
+          >
+            turquoise, silver, scarlet i slate.
+          </span>
         </p>
       );
       setModalBtn("Nastavi");
       const timer = setTimeout(() => {
         setOpenModal(true);
       }, 2000);
-    } else if (iqosStyle === 1) {
+    }
+  };
+  const handleIqosMedium = () => {
+    if (!openModal && iqosStyle === 1) {
+      // setIqosMedium(style.iqosMediumFade);
+      setButtonStyle(style.buttonZoom);
+      setIqosNew(style.iqosNewUp);
       setIqosStyle(2);
-      setIqosTransition(true);
-      setModalHeader(<h1>Turkizni gumb</h1>);
+      setModalHeader(<h1>Nova tipka</h1>);
       setModalText(
         <div>
-          <img src={require("../assets/exp.png")} alt="exp" draggable={false}/>
-        <p>
-          Svetlo turkizna barva gumba <br />
-          dopolnjuje dizajn in poskribi za
-          <br />
-          večjo opaznost.
-        </p></div>
+          <img src={require("../assets/exp.png")} alt="exp" draggable={false} />
+          <p
+            style={{
+              display: "block",
+              marginBottom: "60px",
+            }}
+          >
+            Vidljiva tirkizna tipka
+            <br />
+            Upotpunjuje dizajn!
+          </p>
+        </div>
       );
-      setModalBtn("Nadaljujte");
+      setModalBtn("Nastavi");
       const timer = setTimeout(() => {
         setOpenModal(true);
       }, 2000);
     }
-  }
+  };
+  const handleIqos = () => {
+    if (!openModal) {
+      if (iqosStyle === 0) {
+        setIqosStyle(1);
+        setIqosTransition(true);
+        setModalHeader(<h1>Nove boje</h1>);
+        setModalText(
+          <p>
+            Dostupan je u 4 nove boje: <br />
+            <span>turquoise, silver, scarlet i slate</span>.
+          </p>
+        );
+        setModalBtn("Nastavi");
+        const timer = setTimeout(() => {
+          setOpenModal(true);
+        }, 2000);
+      } else if (iqosStyle === 1) {
+        setIqosStyle(2);
+        setIqosTransition(true);
+        setModalHeader(<h1>Turkizni gumb</h1>);
+        setModalText(
+          <div>
+            <img
+              src={require("../assets/exp.png")}
+              alt="exp"
+              draggable={false}
+            />
+            <p>
+              Svetlo turkizna barva gumba <br />
+              dopolnjuje dizajn in poskribi za
+              <br />
+              večjo opaznost.
+            </p>
+          </div>
+        );
+        setModalBtn("Nadaljujte");
+        const timer = setTimeout(() => {
+          setOpenModal(true);
+        }, 2000);
+      }
+    }
   };
 
   const handleKit = () => {
-    if (!openModal){
-    if (!kitFounded) {
-      setKitOld(style.kitOldFade);
-      setKitNew(style.kitNewUp);
-      setKitStyle(1);
-      setKitFounded(true);
-      setModalHeader(
-        <h1>
-          Dvostruki alat za
-          <br /> čiščenje
-        </h1>
-      );
-      setModalText(
-        <p>
-          U pakiranju dolazi novi dvostuki <br />
-          alat za čiščenje.
-        </p>
-      );
-      setModalBtn("Nastavi");
-      const timer = setTimeout(() => {
-        setOpenModal(true);
-      }, 2000);
+    if (!openModal) {
+      if (!kitFounded) {
+        setKitOld(style.kitOldFade);
+        setKitNew(style.kitNewUp);
+        setKitStyle(1);
+        setKitFounded(true);
+        setModalHeader(
+          <h1>
+            Dvostruki alat za
+            <br /> čiščenje
+          </h1>
+        );
+        setModalText(
+          <p>
+            U pakiranju dolazi novi dvostuki <br />
+            alat za čiščenje.
+          </p>
+        );
+        setModalBtn("Nastavi");
+        const timer = setTimeout(() => {
+          setOpenModal(true);
+        }, 2000);
+      }
     }
-  }
   };
 
   const handleName = () => {
-    if (!openModal){
-    if (!nameFounded) {
-      setNameOld(style.nameOldFade);
-      setNameNew(style.nameNewUp);
-      // setNameStyle(true);
-      // setNameTransition(true);
-      setNameFounded(true);
-      setModalHeader(<h1>Novi stil</h1>);
-      setModalText(
-        <p>
-          Stigao je
-          <br />
-          <span style={{
-            display: "block",
-            marginBottom: "40px"
-          }}>IQOS ORIGINALS DUO</span>
-          
-        </p>
-      );
-      setModalBtn("Nastavi");
-      const timer = setTimeout(() => {
-        setOpenModal(true);
-      }, 2000);
+    if (!openModal) {
+      if (!nameFounded) {
+        setNameOld(style.nameOldFade);
+        setNameNew(style.nameNewUp);
+        // setNameStyle(true);
+        // setNameTransition(true);
+        setNameFounded(true);
+        setModalHeader(<h1>Novi stil</h1>);
+        setModalText(
+          <p>
+            Stigao je
+            <br />
+            <span
+              style={{
+                display: "block",
+                marginBottom: "40px",
+              }}
+            >
+              IQOS ORIGINALS DUO
+            </span>
+          </p>
+        );
+        setModalBtn("Nastavi");
+        const timer = setTimeout(() => {
+          setOpenModal(true);
+        }, 2000);
+      }
     }
-  }
   };
 
   useLayoutEffect(() => {
@@ -263,25 +312,28 @@ const Main = () => {
     img4Loaded,
     img5Loaded,
     img6Loaded,
-    img7Loaded,  
+    img7Loaded,
     img8Loaded,
     img9Loaded,
-    img10Loaded, 
+    img10Loaded,
   ]);
-  useEffect(()=>{
-    const positionDown = document.getElementById("iqosMedium")?.offsetHeight/2.03 + document.getElementById("iqosMedium")?.offsetTop
-    if (loaded){
-    setButtonPosition(positionDown) 
-    console.log(positionDown)  } 
-    if (buttonStyle === style.buttonZoom){
-      setButtonPosition(positionDown) 
+  useEffect(() => {
+    const positionDown =
+      document.getElementById("iqosMedium")?.offsetHeight / 2.03 +
+      document.getElementById("iqosMedium")?.offsetTop;
+    if (loaded) {
+      setButtonPosition(positionDown);
+      console.log(positionDown);
     }
-    window.addEventListener("resize", ()=>{
-      setButtonPosition(positionDown)
-    })
-  },[buttonPosition, buttonStyle, loaded, "resize"])
+    if (buttonStyle === style.buttonZoom) {
+      setButtonPosition(positionDown);
+    }
+    window.addEventListener("resize", () => {
+      setButtonPosition(positionDown);
+    });
+  }, [buttonPosition, buttonStyle, loaded, "resize"]);
 
-  return ( 
+  return (
     <div
       className={style.main}
       // style={{
@@ -295,7 +347,6 @@ const Main = () => {
       >
         <Confetti confettiQuantity={confettiQuantity} />
       </div>{" "}
-      
       <Modal
         openModal={openModal}
         handleClose={handleClose}
@@ -305,7 +356,8 @@ const Main = () => {
         modalBtn={modalBtn}
         number={number}
       />
-      <div className={!loaded ? style.loading : style.loaded}>Učitavam</div>
+      <Hints hint={hint} />
+      <div className={!loaded ? style.loading : style.loaded}></div>
       <div className={style.background}>
         <div className={style.content}>
           {/* <img
@@ -447,7 +499,6 @@ const Main = () => {
               opacity: iqosStyle === 0 ? 0 : 1,
             }}
           /> */}
-          
 
           <img
             onLoad={() => setImg5Loaded(true)}
@@ -469,28 +520,22 @@ const Main = () => {
             className={iqosMedium}
             id="iqosMedium"
           />
-          <div
-                className={style.btn1}
-                onPointerDown={handleIqosMedium}
-                style={{
-                  // display: iqosStyle === 1 ? "block" : "none",
-                  
-                       top: buttonPosition
-                      
-                }}
-              >
-                 <img
-           onLoad={()=>setImg4Loaded(true)}
-           draggable={false}
-           src={require("../assets/button.png")}
-           alt="button"
-           className={buttonStyle}
-          //  style={{
-          //   top: buttonPosition
-          //  }} 
-           />
-              </div>
-          
+          <img
+            onLoad={() => setImg4Loaded(true)}
+            draggable={false}
+            src={require("../assets/button.png")}
+            alt="button"
+            className={buttonStyle}
+            //  style={{
+            //   top: buttonPosition
+            //  }}
+            style={{
+              // display: iqosStyle === 1 ? "block" : "none",
+
+              top: buttonPosition,
+            }}
+          />
+
           <div
             style={{
               width: document?.getElementById("iqosOld")?.offsetWidth,
@@ -500,7 +545,6 @@ const Main = () => {
               left: "16%",
             }}
           >
-            
             <div
               style={{
                 position: "relative",
@@ -508,8 +552,14 @@ const Main = () => {
                 height: "100%",
               }}
             >
-             
-              
+              {" "}
+              <div
+                className={style.btn1}
+                onPointerDown={handleIqosMedium}
+                style={{
+                  display: iqosStyle === 1 ? "block" : "none",
+                }}
+              ></div>
               <div
                 className={style.btn3}
                 onPointerDown={handleIqosOld}
@@ -602,10 +652,12 @@ const Main = () => {
           ></div>
         </div>
       </div>
-      <div className={style.eclipse}>
+      <button className={style.eclipse} onClick={handleHint}>
         <div>
-        <p>{number === 5 ? 4 : number}</p></div>
-      </div>
+          <p>{number === 5 ? 4 : number}</p>
+          
+        </div>
+      </button>
     </div>
   );
 };

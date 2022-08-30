@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useLayoutEffect, useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import "./Modal.css";
 
@@ -11,25 +11,36 @@ const Modal = ({
   modalBtn,
   number,
 }) => {
+  const [modalStyle, setModalStyle] = useState(true)
+
+  useLayoutEffect(()=>{
+    const timer = setTimeout(()=>{
+      if (!number){
+      setModalStyle(false)
+    }
+    }, 1000)
+    
+  }, [number])
+
   return (
     <>
       <CSSTransition
         in={openModal}
-        timeout={3000}
+        timeout={1000}
         unmountOnExit
         className="modal"
       >
         <div>
-          <div className={number ? "modalContent" : "modalContent2"}>
-            <div className={number ? "modalHeader" : "modalHeader2"}>
+          <div className={modalStyle ? "modalContent" : "modalContent2"}>
+            <div className={modalStyle ? "modalHeader" : "modalHeader2"}>
               {modalHeader}
             </div>
-            <div className={number ? "modalBody" : "modalBody2"}>
+            <div className={modalStyle ? "modalBody" : "modalBody2"}>
               {modalText}
             </div>
             <button
               onPointerDown={handleClose}
-              className={number ? "modalBtn" : "modalBtn2"}
+              className={modalStyle ? "modalBtn" : "modalBtn2"}
             >
               {modalBtn}
             </button>

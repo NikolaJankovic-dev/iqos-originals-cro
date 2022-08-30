@@ -39,7 +39,7 @@ const Confetti = ({ confettiQuantity }) => {
         emitters: {
           position: {
             x: 50,
-            y: 80,
+            y: 0,
           },
           rate: {
             quantity: getRandomNumberBetween(1, 20) * confettiQuantity,
