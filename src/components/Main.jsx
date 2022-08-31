@@ -71,7 +71,7 @@ const Main = () => {
   const [confettiQuantity, setConfettiQuantity] = useState(0);
 
   const handleHint = () => {
-    console.log("click")
+    console.log("click");
     if (!kitFounded) {
       setHint("kit");
     } else if (!nameFounded) {
@@ -334,12 +334,7 @@ const Main = () => {
   }, [buttonPosition, buttonStyle, loaded, "resize"]);
 
   return (
-    <div
-      className={style.main}
-      // style={{
-      //   minHeight: window.innerHeight,
-      // }}
-    >
+    <div className={style.main}>
       <div
         style={{
           position: "absolute",
@@ -360,37 +355,6 @@ const Main = () => {
       <div className={!loaded ? style.loading : style.loaded}></div>
       <div className={style.background}>
         <div className={style.content}>
-          {/* <img
-            onLoad={() => setImg1Loaded(true)}
-            draggable={false}
-            src={require("../assets/iqosNew.png")}
-            alt="iqos"
-            className={style.iqosNew}
-            style={{
-              opacity: iqosStyle === 2 ? 1 : 0,
-
-              transform: iqosTransition ? "scale(1.2)" : "scale(1)",
-              filter: iqosTransition
-                ? "drop-shadow(0 0 0.5rem rgba(5,2,2,0.83))"
-                : "drop-shadow(0 0 0.5rem rgba(5,2,2,0))",
-            }}
-          />
-          <img
-            onLoad={() => setImg2Loaded(true)}
-            draggable={false}
-            src={require("../assets/iqosMedium.png")}
-            alt="iqos"
-            className={style.iqosmedium}
-            style={{
-              opacity: iqosStyle === 1 ? 1 : 0,
-              cursor: iqosStyle === 1 ? "pointer" : "default",
-              transform: iqosTransition ? "scale(1.2)" : "scale(1)",
-              filter: iqosTransition
-                ? "drop-shadow(0 0 0.5rem rgba(5,2,2,0.83))"
-                : "drop-shadow(0 0 0.5rem rgba(5,2,2,0))",
-            }}
-          /> */}
-
           <img
             onLoad={() => setImg1Loaded(true)}
             draggable={false}
@@ -444,35 +408,7 @@ const Main = () => {
             className={kitOld}
             onPointerDown={handleKit}
           />
-          {/* <img
-            onLoad={() => setImg5Loaded(true)}
-            draggable={false}
-            src={require("../assets/kitNew.png")}
-            alt="iqos"
-            className={style.kitNew}
-            style={{
-              opacity: kitNew ? 1 : 0,
-              cursor: kitNew ? "pointer" : "default",
-              transform: kitTransition ? "scale(1.2)" : "scale(1)",
-              filter: kitTransition
-                ? "drop-shadow(0 0 0.5rem rgba(5,2,2,0.83))"
-                : "drop-shadow(0 0 0.5rem rgba(5,2,2,0))",
-            }}
-          /> */}
-          {/* <img
-            onLoad={() => setImg6Loaded(true)}
-            draggable={false}
-            src={require("../assets/nameNew.png")}
-            alt="iqos"
-            className={style.nameNew}
-            style={{
-              opacity: nameStyle ? 1 : 0,
-              transform: nameTransition ? "scale(1.2)" : "scale(1)",
-              filter: nameTransition
-                ? "drop-shadow(0 0 0.5rem rgba(5,2,2,0.83))"
-                : "drop-shadow(0 0 0.5rem rgba(5,2,2,0))",
-            }}
-          /> */}
+
           <img
             onLoad={() => setImg3Loaded(true)}
             draggable={false}
@@ -489,26 +425,12 @@ const Main = () => {
       </div>
       <div className={style.background2}>
         <div className={style.content}>
-          {/* <img
-            onLoad={() => setImg4Loaded(true)}
-            draggable={false}
-            src={require("../assets/iqosNew.png")}
-            alt="iqos"
-            className={iqosNew}
-            style={{
-              opacity: iqosStyle === 0 ? 0 : 1,
-            }}
-          /> */}
-
           <img
             onLoad={() => setImg5Loaded(true)}
             draggable={false}
             src={require("../assets/iqosNew.png")}
             alt="iqos"
             className={style.iqosNew}
-            // style={{
-            //   opacity: iqosStyle === 0 ? 0 : 1,
-            // }}
             onPointerDown={handleIqosMedium}
             id="iqosNew"
           />
@@ -526,12 +448,7 @@ const Main = () => {
             src={require("../assets/button.png")}
             alt="button"
             className={buttonStyle}
-            //  style={{
-            //   top: buttonPosition
-            //  }}
             style={{
-              // display: iqosStyle === 1 ? "block" : "none",
-
               top: buttonPosition,
             }}
           />
@@ -589,9 +506,6 @@ const Main = () => {
             src={require("../assets/nameNew.png")}
             alt="iqos"
             className={style.nameNew}
-            // style={{
-            //   opacity: kitNew ? 0 : 1,
-            // }}
           />
           <img
             onLoad={() => setImg10Loaded(true)}
@@ -600,21 +514,10 @@ const Main = () => {
             alt="iqos"
             className={nameNew}
             onPointerDown={handleName}
-            // style={{
-            //   opacity: kitNew ? 0 : 1,
-            // }}
           />
         </div>
 
         <div className={style.buttons}>
-          {/* <div
-            className={style.btn2}
-            onPointerDown={handleIqosMedium}
-            style={{
-              display: iqosStyle === 1 ? "block" : "none",
-            }}
-          ></div> */}
-
           <div
             className={style.btn4}
             onPointerDown={handleIqosOld}
@@ -655,7 +558,6 @@ const Main = () => {
       <button className={style.eclipse} onClick={handleHint}>
         <div>
           <p>{number === 5 ? 4 : number}</p>
-          
         </div>
       </button>
     </div>

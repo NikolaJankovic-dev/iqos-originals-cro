@@ -11,16 +11,15 @@ const Modal = ({
   modalBtn,
   number,
 }) => {
-  const [modalStyle, setModalStyle] = useState(true)
+  const [modalStyle, setModalStyle] = useState(true);
 
-  useLayoutEffect(()=>{
-    const timer = setTimeout(()=>{
-      if (!number){
-      setModalStyle(false)
-    }
-    }, 1000)
-    
-  }, [number])
+  useLayoutEffect(() => {
+    const timer = setTimeout(() => {
+      if (!number) {
+        setModalStyle(false);
+      }
+    }, 1000);
+  }, [number]);
 
   return (
     <>
@@ -38,12 +37,21 @@ const Modal = ({
             <div className={modalStyle ? "modalBody" : "modalBody2"}>
               {modalText}
             </div>
-            <button
-              onPointerDown={handleClose}
-              className={modalStyle ? "modalBtn" : "modalBtn2"}
-            >
-              {modalBtn}
-            </button>
+            {modalStyle ? (
+              <button
+                onPointerDown={handleClose}
+                className="modalBtn"
+              >
+                {modalBtn}
+              </button>
+            ) : null}
+            {!modalStyle ? (
+              <a href="https://hr.pmiopen.com/s/login/?ec=302&startURL=%2Fs%2Fiqos-originals-duo-bodovi">
+                <button className="modalBtn2">
+                  {modalBtn}
+                </button>{" "}
+              </a>
+            ) : null}
           </div>
         </div>
       </CSSTransition>
