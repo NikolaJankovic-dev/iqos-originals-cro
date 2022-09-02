@@ -170,14 +170,14 @@ const Main = () => {
       setModalHeader(<h1>Nova tipka</h1>);
       setModalText(
         <div>
-          <img src={require("../assets/exp.png")} alt="exp" draggable={false} />
+          <img src={require("../assets/images/exp.png")} alt="exp" draggable={false} />
           <p
             style={{
               display: "block",
               marginBottom: "60px",
             }}
           >
-            Vidljiva tirkizna tipka
+            Vidljivija tirkizna tipka
             <br />
             upotpunjuje dizajn!
           </p>
@@ -212,7 +212,7 @@ const Main = () => {
         setModalText(
           <div>
             <img
-              src={require("../assets/exp.png")}
+              src={require("../assets/images/exp.png")}
               alt="exp"
               draggable={false}
             />
@@ -248,7 +248,7 @@ const Main = () => {
         setModalText(
           <p>
             U pakiranju dolazi novi dvostuki <br />
-            alat za čiščenje.
+            alat za čišćenje.
           </p>
         );
         setModalBtn("Nastavi");
@@ -358,7 +358,7 @@ const Main = () => {
           <img
             onLoad={() => setImg1Loaded(true)}
             draggable={false}
-            src={require("../assets/iqosold.png")}
+            src={require("../assets/images/iqosold.png")}
             alt="iqos"
             className={iqosOld}
             // style={{
@@ -403,7 +403,7 @@ const Main = () => {
           <img
             onLoad={() => setImg2Loaded(true)}
             draggable={false}
-            src={require("../assets/kitOld.png")}
+            src={require("../assets/images/kitOld.png")}
             alt="iqos"
             className={kitOld}
             onPointerDown={handleKit}
@@ -412,7 +412,7 @@ const Main = () => {
           <img
             onLoad={() => setImg3Loaded(true)}
             draggable={false}
-            src={require("../assets/nameOld.png")}
+            src={require("../assets/images/nameOld.png")}
             alt="iqos"
             className={nameOld}
             // style={{
@@ -428,7 +428,7 @@ const Main = () => {
           <img
             onLoad={() => setImg5Loaded(true)}
             draggable={false}
-            src={require("../assets/iqosNew.png")}
+            src={require("../assets/images/iqosNew.png")}
             alt="iqos"
             className={style.iqosNew}
             onPointerDown={handleIqosMedium}
@@ -437,7 +437,7 @@ const Main = () => {
           <img
             onLoad={() => setImg6Loaded(true)}
             draggable={false}
-            src={require("../assets/iqosMedium.png")}
+            src={require("../assets/images/iqosMedium.png")}
             alt="iqos"
             className={iqosMedium}
             id="iqosMedium"
@@ -445,7 +445,7 @@ const Main = () => {
           <img
             onLoad={() => setImg4Loaded(true)}
             draggable={false}
-            src={require("../assets/button.png")}
+            src={require("../assets/images/button.png")}
             alt="button"
             className={buttonStyle}
             style={{
@@ -489,28 +489,28 @@ const Main = () => {
           <img
             onLoad={() => setImg7Loaded(true)}
             draggable={false}
-            src={require("../assets/kitNew.png")}
+            src={require("../assets/images/kitNew.png")}
             alt="iqos"
             className={style.kitNew}
           />
           <img
             onLoad={() => setImg8Loaded(true)}
             draggable={false}
-            src={require("../assets/kitNew.png")}
+            src={require("../assets/images/kitNew.png")}
             alt="iqos"
             className={kitNew}
           />
           <img
             onLoad={() => setImg9Loaded(true)}
             draggable={false}
-            src={require("../assets/nameNew.png")}
+            src={require("../assets/images/nameNew.png")}
             alt="iqos"
             className={style.nameNew}
           />
           <img
             onLoad={() => setImg10Loaded(true)}
             draggable={false}
-            src={require("../assets/nameNew.png")}
+            src={require("../assets/images/nameNew.png")}
             alt="iqos"
             className={nameNew}
             onPointerDown={handleName}
