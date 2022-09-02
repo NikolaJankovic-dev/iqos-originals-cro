@@ -63,7 +63,7 @@ const Main = () => {
       <br /> se promijenilo.
       <br />
       <br />
-      <span>Sretno</span>
+      <span>Sretno!</span>
     </p>
   );
   const [modalBtn, setModalBtn] = useState("Zaigraj");
@@ -179,7 +179,7 @@ const Main = () => {
           >
             Vidljiva tirkizna tipka
             <br />
-            Upotpunjuje dizajn!
+            upotpunjuje dizajn!
           </p>
         </div>
       );
